@@ -21,7 +21,7 @@
 # exec --no-startup-id setxkbmap fr bepo
 
 # Applications
-# set $terminal /home/guillaume/.local/bin/st -e tmux
+set $terminal i3-sensible-terminal
 # set $editor /usr/bin/emacsclient -c
 # set $web /home/guillaume/.local/bin/firefox
 # set $email /home/guillaume/.local/bin/astroid
@@ -111,9 +111,9 @@ mode "$mode_launcher" {
     bindsym space mode "default"
 
     # start other frequent applications
-    bindsym w exec "$web"; mode "default"
-    bindsym m exec "$email"; mode "default" 
-    bindsym e exec "$editor"; mode "default"
+    # bindsym w exec "$web"; mode "default"
+    # bindsym m exec "$email"; mode "default"
+    # bindsym e exec "$editor"; mode "default"
 
     # start space (a program launcher) and switch to insert mode if any item was selected and run them
     bindsym l exec $rofi -location 2 -width 100 -show run; mode default
