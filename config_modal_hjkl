@@ -257,8 +257,8 @@ mode "$mode_layout" {
     bindsym f fullscreen toggle
 
     # change container layout (stacked, tabbed, toggle split)
-    bindsym k layout stacking
-    bindsym j layout tabbed
+    bindsym s layout stacking
+    bindsym w layout tabbed
     bindsym p layout toggle split
 
     # toggle tiling / floating
