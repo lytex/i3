@@ -58,7 +58,7 @@ floating_modifier Mod4
 bindsym Super_L mode "$mode_switch"
 bindsym Super_R mode "$mode_switch"
 # bindsym $mod+space mode "$mode_switch"
-set $mode_switch Mode [space] launcher, [j]ump, [ctsrpP<arrow><workspace>] navigate, [m]ove container, [l]ayout, move [w]orkspace, resi[z]e container, [i]3 special
+set $mode_switch Mode [space] launcher, [j]ump, [hjklpP<arrow><workspace>] navigate, [m]ove container, [l]ayout, move [w]orkspace, [r]esize container, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
 
@@ -67,7 +67,7 @@ mode "$mode_switch" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_launcher"
+    bindsym space mode "$mode_launcher"
 
     bindsym j exec $rofi -location 2 -width 100 -show window; mode default
 
@@ -108,7 +108,7 @@ mode "$mode_launcher" {
 
     bindsym return exec "$terminal" ; mode "default"
 
-    bindsym kpace mode "default"
+    bindsym space mode "default"
 
     # start other frequent applications
     bindsym w exec "$web"; mode "default"
@@ -131,7 +131,7 @@ mode "$mode_paste" {
 
     bindsym return mode default; exec $rofi -location 2 -width 100 -show run -run-command '/bin/sh -c \\"echo -n `{cmd}` | xdotool type --clearmodifiers --delay 0 --file -\\"'
 
-    bindsym kpace mode "$mode_launcher"
+    bindsym space mode "$mode_launcher"
 
     # paste password
     bindsym p mode default; exec $shell -c "rofi_pass -location 2 -width 100 | xdotool_type_input"
@@ -151,7 +151,7 @@ mode "$mode_i3_special" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_switch"
+    bindsym space mode "$mode_switch"
 
     # reload the configuration file
     bindsym h reload
@@ -171,7 +171,7 @@ mode "$mode_navigate" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_move_container"
+    bindsym space mode "$mode_move_container"
   
     # change focus
     bindsym h focus left
@@ -219,7 +219,7 @@ mode "$mode_move_container" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_navigate"
+    bindsym space mode "$mode_navigate"
 
     # move focused window
     bindsym h move left
@@ -267,7 +267,7 @@ mode "$mode_layout" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_navigate"
+    bindsym space mode "$mode_navigate"
 
     # split in horizontal orientation
     bindsym h split h
@@ -296,7 +296,7 @@ mode "$mode_move_workspace" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_navigate"
+    bindsym space mode "$mode_navigate"
 
     # move whole workspace to outputs
     bindsym h move workspace to output right
@@ -326,7 +326,7 @@ mode "$mode_window_resize" {
 
     bindsym return mode "default"
 
-    bindsym kpace mode "$mode_navigate"
+    bindsym space mode "$mode_navigate"
 
     # Pressing left will shrink the window’s width.
     # Pressing right will grow the window’s width.
