@@ -230,7 +230,7 @@ mode "$mode_move_container" {
     bindsym Shift+l move container to output down
 
     # quit focused window
-    bindsym q quit
+    bindsym q kill
 
     # toggle tiling / floating
     bindsym Shift+space floating toggle
