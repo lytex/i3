@@ -65,7 +65,7 @@ mode "$mode_switch" {
     bindsym Super_L nop
     bindsym Super_R nop
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_launcher"
 
@@ -106,7 +106,7 @@ mode "$mode_launcher" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn exec "$terminal" ; mode "default"
+    bindsym return exec "$terminal" ; mode "default"
 
     bindsym kpace mode "default"
 
@@ -129,7 +129,7 @@ mode "$mode_paste" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode default; exec $rofi -location 2 -width 100 -show run -run-command '/bin/sh -c \\"echo -n `{cmd}` | xdotool type --clearmodifiers --delay 0 --file -\\"'
+    bindsym return mode default; exec $rofi -location 2 -width 100 -show run -run-command '/bin/sh -c \\"echo -n `{cmd}` | xdotool type --clearmodifiers --delay 0 --file -\\"'
 
     bindsym kpace mode "$mode_launcher"
 
@@ -149,7 +149,7 @@ mode "$mode_i3_special" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_switch"
 
@@ -169,7 +169,7 @@ mode "$mode_navigate" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_move_container"
   
@@ -217,7 +217,7 @@ mode "$mode_move_container" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_navigate"
 
@@ -265,7 +265,7 @@ mode "$mode_layout" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_navigate"
 
@@ -294,7 +294,7 @@ mode "$mode_move_workspace" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_navigate"
 
@@ -324,7 +324,7 @@ mode "$mode_window_resize" {
     bindsym Super_L mode "$mode_switch"
     bindsym Super_R mode "$mode_switch"
 
-    bindsym leturn mode "default"
+    bindsym return mode "default"
 
     bindsym kpace mode "$mode_navigate"
 
