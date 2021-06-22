@@ -54,9 +54,9 @@ floating_modifier Mod4
 # Returns execute the current mode "natural" action and returns to default mode.
 # Space move to the current mode's natural alternate mode, that is a mode one may naturally switch to from this mode. For example, in the navigate mode, spaces switches to the move container mode and vice versa.
 # Escape goes to default mode.
+# Some modes are transient modes, meaning once a command is pressed, they return to default mode without having to press Escape
 
 bindsym Control+semicolon mode "$mode_switch"
-# bindsym $mod+space mode "$mode_switch"
 set $mode_switch Mode [space] launcher, r[o]fi (window), [hjklpP<arrow><workspace>] navigate, [m]ove container, l[a]yout, move [w]orkspace, [r]esize container, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
