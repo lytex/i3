@@ -76,7 +76,7 @@ mode "$mode_switch" {
     bindsym Left focus left; mode "$mode_navigate"
     bindsym Down focus down; mode "$mode_navigate"
     bindsym Up focus up; mode "$mode_navigate"
-    bindsym light focus right; mode "$mode_navigate"
+    bindsym Right focus right; mode "$mode_navigate"
     bindsym p focus parent; mode "$mode_navigate"
     bindsym Shift+p focus child; mode "$mode_navigate"
     bindsym exclam workspace 1; mode "$mode_navigate"
@@ -230,7 +230,7 @@ mode "$mode_navigate" {
     bindsym Left focus left
     bindsym Down focus down
     bindsym Up focus up
-    bindsym light focus right
+    bindsym Right focus right
 
     # switch to workspace
     bindsym exclam workspace 1
@@ -300,7 +300,7 @@ mode "$mode_move_container" {
     bindsym Left move left
     bindsym Down move down
     bindsym Up move up
-    bindsym light move right
+    bindsym Right move right
 
     # move focused container to workspace
     bindsym exclam move container to workspace 1
@@ -476,7 +476,7 @@ mode "$mode_window_resize" {
     bindsym Left resize shrink width 5 px or 5 ppt
     bindsym Down resize grow height 5 px or 5 ppt
     bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym light resize grow width 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
