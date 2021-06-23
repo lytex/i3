@@ -280,7 +280,9 @@ mode "$mode_navigate" {
     bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
 }
 
-set $mode_move_container Select container [hjkl] or [<arrows>], [<workspace>] move to workspace, [Shift+hjkl] to outputs, [q]uit container, [Shift+space] toggle floating/tiling, [space] navigate
+# [hjkl] keeps focus
+# [Shift+hjkl] loses focus
+set $mode_move_container Move container [hjkl] or [<arrows>], [<workspace>] move to workspace, [Shift+hjkl] to outputs, [q]uit container, [Shift+space] toggle floating/tiling, [space] navigate
 mode "$mode_move_container" {
     bindsym Escape mode "default"
 
