@@ -26,7 +26,7 @@ set $terminal i3-sensible-terminal
 # set $web /home/guillaume/.local/bin/firefox
 # set $email /home/guillaume/.local/bin/astroid
 # set $shell /usr/bin/fish
-set $rofi /usr/bin/rofi -matching fuzzy -sort-method fzf -sort -font "Fantasque Sans Mono 14"
+set $rofi /usr/bin/rofi -matching regex -sort-method fzf -sort -font "Fantasque Sans Mono 14"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
