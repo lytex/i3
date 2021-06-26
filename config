@@ -50,6 +50,29 @@ exec_always feh --bg-fill ~/.local/share/wallpapers/i3-wallpaper # symlink to yo
 floating_modifier Mod4
 
 
+# workspace back and forth (with/without active container)
+workspace_auto_back_and_forth yes
+
+# workspace tabbed by default
+workspace_layout tabbed
+
+
+# Workspace names
+# to display names or symbols instead of plain workspace numbers you can use
+# something like: set $ws1 1:mail
+#                 set $ws2 2:
+set $ws1 "1: Main"
+set $ws2 "2: Meetings"
+set $ws3 "3: Maintenance"
+set $ws4 "4: Chat"
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+
 #### Modes ####
 #
 # Control+semicolon gets you to "mode switch" mode from anywhere. 
@@ -59,7 +82,7 @@ floating_modifier Mod4
 # Some modes are transient modes, meaning once a command is pressed, they return to default mode without having to press Escape
 
 bindsym Control+semicolon mode "$mode_switch"
-set $mode_switch Mode [space] launcher, r[o]fi (window), [hjklpP<arrow><workspace>] navigate, [m]ove container, l[a]yout, move [w]orkspace, [r]esize container, [i]3 special
+set $mode_switch Mode [space] launcher, r[o]fi (window), [hjklpP<arrow><workspace>] navigate, [m]ove container, l[a]yout, move [w]orkspace, [r]esize container, [s]witch to last workspace, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
 
@@ -79,18 +102,19 @@ mode "$mode_switch" {
     bindsym Down focus down; mode "$mode_navigate"
     bindsym Up focus up; mode "$mode_navigate"
     bindsym Right focus right; mode "$mode_navigate"
+    bindsym s workspace back_and_forth; mode "$mode_navigate"
     bindsym p focus parent; mode "$mode_navigate"
     bindsym Shift+p focus child; mode "$mode_navigate"
-    bindsym exclam workspace 1; mode "$mode_navigate"
-    bindsym at workspace 2; mode "$mode_navigate"
-    bindsym numbersign workspace 3; mode "$mode_navigate"
-    bindsym dollar workspace 4; mode "$mode_navigate"
-    bindsym percent workspace 5; mode "$mode_navigate"
-    bindsym asciicircum workspace 6; mode "$mode_navigate"
-    bindsym ampersand workspace 7; mode "$mode_navigate"
-    bindsym asterisk workspace 8; mode "$mode_navigate"
-    bindsym parenleft workspace 9; mode "$mode_navigate"
-    bindsym parenright workspace 10; mode "$mode_navigate"
+    bindsym exclam workspace $ws1; mode "$mode_navigate"
+    bindsym at workspace $ws2; mode "$mode_navigate"
+    bindsym numbersign workspace $ws3; mode "$mode_navigate"
+    bindsym dollar workspace $ws4; mode "$mode_navigate"
+    bindsym percent workspace $ws5; mode "$mode_navigate"
+    bindsym asciicircum workspace $ws6; mode "$mode_navigate"
+    bindsym ampersand workspace $ws7; mode "$mode_navigate"
+    bindsym asterisk workspace $ws8; mode "$mode_navigate"
+    bindsym parenleft workspace $ws9; mode "$mode_navigate"
+    bindsym parenright workspace $ws10; mode "$mode_navigate"
 
     bindsym m mode "$mode_move_container"
     bindsym a mode "$mode_layout"
@@ -104,7 +128,6 @@ mode "$mode_switch" {
     bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym s exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -212,7 +235,7 @@ mode "$mode_i3_special" {
     bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
 }
 
-set $mode_navigate Navigate [hjkl] or [<arrow>] move focus, [<workspace>] switch to workspace, [Shift+space] focus floating/tiling, [p] focus parent, [Shift+p] focus child, [space] move container,  l[a]yout
+set $mode_navigate Navigate [hjkl] or [<arrow>] move focus, [<workspace>] go to workspace, [Shift+space] focus floating/tiling, [p] focus parent, [Shift+p] focus child, [space] move container,  l[a]yout, [s]witch to last workspace
 mode "$mode_navigate" {
     bindsym Escape mode "default"
 
@@ -234,17 +257,17 @@ mode "$mode_navigate" {
     bindsym Up focus up
     bindsym Right focus right
 
-    # switch to workspace
-    bindsym exclam workspace 1
-    bindsym at workspace 2
-    bindsym numbersign workspace 3
-    bindsym dollar workspace 4
-    bindsym percent workspace 5
-    bindsym asciicircum workspace 6
-    bindsym ampersand workspace 7
-    bindsym asterisk workspace 8
-    bindsym parenleft workspace 9
-    bindsym parenright workspace 10
+    # go to workspace
+    bindsym exclam workspace $ws1
+    bindsym at workspace $ws2
+    bindsym numbersign workspace $ws3
+    bindsym dollar workspace $ws4
+    bindsym percent workspace $ws5
+    bindsym asciicircum workspace $ws6
+    bindsym ampersand workspace $ws7
+    bindsym asterisk workspace $ws8
+    bindsym parenleft workspace $ws9
+    bindsym parenright workspace $ws10
 
     # change focus between tiling / floating windows
     bindsym Shift+space focus mode_toggle
@@ -254,6 +277,9 @@ mode "$mode_navigate" {
 
     # focus the child container
     bindsym Shift+p focus child
+
+    # switch between last used workspaces
+    bindsym s workspace back_and_forth; mode "$mode_navigate"
 
     # switch to layout mode
     bindsym a mode "$mode_layout"
@@ -269,7 +295,6 @@ mode "$mode_navigate" {
     bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym s exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -306,17 +331,19 @@ mode "$mode_move_container" {
     bindsym Up move up
     bindsym Right move right
 
+    bindsum s move container to workspace back_and_forth; workspace back_and_forth
+
     # move focused container to workspace
-    bindsym exclam move container to workspace 1
-    bindsym at move container to workspace 2
-    bindsym numbersign move container to workspace 3
-    bindsym dollar move container to workspace 4
-    bindsym percent move container to workspace 5
-    bindsym asciicircum move container to workspace 6
-    bindsym ampersand move container to workspace 7
-    bindsym asterisk move container to workspace 8
-    bindsym parenleft move container to workspace 9
-    bindsym parenright move container to workspace 10
+    bindsym exclam move container to workspace $ws1
+    bindsym at move container to workspace $ws2
+    bindsym numbersign move container to workspace $ws3
+    bindsym dollar move container to workspace $ws4
+    bindsym percent move container to workspace $ws5
+    bindsym asciicircum move container to workspace $ws6
+    bindsym ampersand move container to workspace $ws7
+    bindsym asterisk move container to workspace $ws8
+    bindsym parenleft move container to workspace $ws9
+    bindsym parenright move container to workspace $ws10
 
     # move container to outputs
     bindsym Shift+h move container to output right
@@ -341,7 +368,6 @@ mode "$mode_move_container" {
     bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym p exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym s exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
