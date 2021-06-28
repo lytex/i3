@@ -186,7 +186,7 @@ mode "$mode_i3_special" {
     bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
 }
 
-set $mode_navigate Navigate [hjkl] or [<arrow>] move focus, [<workspace>] go to workspace, [Shift+space] focus floating/tiling, [p] focus parent, [Shift+p] focus child, [space] move container,  l[a]yout, [s]witch to last workspace
+set $mode_navigate Navigate [hjkl] or [<arrow>] move focus, [<workspace>] go to workspace, [Shift+space] focus floating/tiling, [p] focus parent, [Shift+p] focus child, [space] move container,  l[a]yout, [s]witch to last workspace, [m]ove container
 mode "$mode_navigate" {
     bindsym Escape mode "default"
 
