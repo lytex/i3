@@ -235,6 +235,9 @@ mode "$mode_navigate" {
     # switch to layout mode
     bindsym a mode "$mode_layout"
 
+    # switch to move mode
+    bindsym m mode "$mode_move_container"
+
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym w exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -255,7 +258,6 @@ mode "$mode_navigate" {
     bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
 }
 
 # [hjkl] keeps focus
