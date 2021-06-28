@@ -82,7 +82,7 @@ set $ws10 10
 # Some modes are transient modes, meaning once a command is pressed, they return to default mode without having to press Escape
 
 bindsym Control+semicolon mode "$mode_switch"
-set $mode_switch Mode [space] launcher, r[o]fi (window), [hjklpP<arrow><workspace>] navigate, [m]ove container, l[a]yout, move [w]orkspace, [r]esize container, [s]witch to last workspace, [i]3 special
+set $mode_switch Mode [space] launcher, goto [o]pen window, [hjklpP<arrow><workspace>] navigate, [m]ove container, l[a]yout, move [w]orkspace, [r]esize container, [s]witch to last workspace, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
 
