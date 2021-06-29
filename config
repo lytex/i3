@@ -72,18 +72,24 @@ set $ws8 8
 set $ws9 9
 set $ws10 10
 
-exec i3-msg workspace 1 # Start at defined workspace instead of at workspace 1 (default)
+exec i3-msg workspace $ws1 # Start at defined workspace instead of at workspace 1 (default)
 
 #### Modes ####
 #
 # Control+semicolon gets you to "mode switch" mode from anywhere. 
-# Returns execute the current mode "natural" action and returns to default mode.
-# Space move to the current mode's natural alternate mode, that is a mode one may naturally switch to from this mode. For example, in the navigate mode, spaces switches to the move container mode and vice versa.
-# Escape goes to default mode.
+# Returns starts a terminal
+# Space starts a desktop app
+# q quits the focused window
+# r activates resize mode
+# o searches jumps to a window by title
+# a goes to layout mode (horizontal, vertical, stacking, tabbed mode)
+# m goes to move mode
+# Escape goes to default mode
 # Some modes are transient modes, meaning once a command is pressed, they return to default mode without having to press Escape
 
 bindsym Control+semicolon mode "$mode_switch"
-set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last workspace # , [i]3 special
+
+set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrksp [Shift+space] toggle floating/tiling, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
 
@@ -91,25 +97,32 @@ mode "$mode_switch" {
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec "$terminal" ; mode "default"
-
-    bindsym q kill # quit focused window
+    # quit focused window
+    bindsym q kill
     bindsym w mode "$mode_move_workspace"
     bindsym r mode "$mode_window_resize"
-    bindsym o exec $rofi -location 2 -width 100 -show window; mode default # go to open window
+    # go to open window
+    bindsym o exec $rofi -location 2 -width 100 -show window; mode default
     bindsym a mode "$mode_layout"
     bindsym m mode "$mode_move_container"
 
+    # change focus
     bindsym h focus left; mode "$mode_navigate"
     bindsym j focus down; mode "$mode_navigate"
     bindsym k focus up; mode "$mode_navigate"
     bindsym l focus right; mode "$mode_navigate"
+    # alternatively, you can use the cursor keys:
     bindsym Left focus left; mode "$mode_navigate"
     bindsym Down focus down; mode "$mode_navigate"
     bindsym Up focus up; mode "$mode_navigate"
     bindsym Right focus right; mode "$mode_navigate"
-    bindsym s workspace back_and_forth; mode "$mode_navigate"
+    # focus the parent container
     bindsym p focus parent; mode "$mode_navigate"
+    # focus the child container
     bindsym Shift+p focus child; mode "$mode_navigate"
+    # switch between last used workspaces
+    bindsym s workspace back_and_forth; mode "$mode_navigate"
+    # go to workspace
     bindsym exclam workspace $ws1; mode "$mode_navigate"
     bindsym at workspace $ws2; mode "$mode_navigate"
     bindsym numbersign workspace $ws3; mode "$mode_navigate"
@@ -120,6 +133,8 @@ mode "$mode_switch" {
     bindsym asterisk workspace $ws8; mode "$mode_navigate"
     bindsym parenleft workspace $ws9; mode "$mode_navigate"
     bindsym parenright workspace $ws10; mode "$mode_navigate"
+    # change focus between tiling / floating windows
+    bindsym Shift+space focus mode_toggle
 
     bindsym i mode "$mode_i3_special"
 
@@ -129,6 +144,249 @@ mode "$mode_switch" {
     bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+}
+
+
+set $mode_navigate [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrkspc
+mode "$mode_navigate" {
+    bindsym Escape mode "default"
+
+    bindsym Control+semicolon mode "$mode_switch"
+
+    bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
+    bindsym Return exec "$terminal" ; mode "default"
+   # quit focused window
+    bindsym q kill
+    bindsym w mode "$mode_move_workspace"
+    bindsym r mode "$mode_window_resize"
+    # go to open window
+    bindsym o exec $rofi -location 2 -width 100 -show window; mode default
+    bindsym a mode "$mode_layout"
+    bindsym m mode "$mode_move_container"
+
+    # change focus
+    bindsym h focus left
+    bindsym j focus down
+    bindsym k focus up
+    bindsym l focus right
+    # alternatively, you can use the cursor keys:
+    bindsym Left focus left
+    bindsym Down focus down
+    bindsym Up focus up
+    bindsym Right focus right
+    # focus the parent container
+    bindsym p focus parent
+    # focus the child container
+    bindsym Shift+p focus child
+    # switch between last used workspaces
+    bindsym s workspace back_and_forth
+    # go to workspace
+    bindsym exclam workspace $ws1
+    bindsym at workspace $ws2
+    bindsym numbersign workspace $ws3
+    bindsym dollar workspace $ws4
+    bindsym percent workspace $ws5
+    bindsym asciicircum workspace $ws6
+    bindsym ampersand workspace $ws7
+    bindsym asterisk workspace $ws8
+    bindsym parenleft workspace $ws9
+    bindsym parenright workspace $ws10
+    # change focus between tiling / floating windows
+    bindsym Shift+space focus mode_toggle
+
+    # Alert on unrecognized commands and exit to default mode to avoid accidental input
+    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+}
+
+# [hjkl] keeps focus
+# [Shift+hjkl] loses focus
+set $mode_move_container Move container [hjkl] or [<arrows>], [<workspace>] move to workspace, [Shift+hjkl] to outputs, [q]uit container, [Shift+space] toggle floating/tiling, [space] navigate
+mode "$mode_move_container" {
+    bindsym Escape mode "default"
+
+    bindsym Control+semicolon mode "$mode_switch"
+
+    bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
+    bindsym Return exec "$terminal" ; mode "default"
+    # quit focused window
+    bindsym q kill
+    bindsym w mode "$mode_move_workspace"
+    bindsym r mode "$mode_window_resize"
+    # go to open window
+    bindsym o exec $rofi -location 2 -width 100 -show window; mode default
+    bindsym a mode "$mode_layout"
+
+    # move focused window
+    bindsym h move left
+    bindsym j move down
+    bindsym k move up
+    bindsym l move right
+
+    # alternatively, you can use the cursor keys:
+    bindsym Left move left
+    bindsym Down move down
+    bindsym Up move up
+    bindsym Right move right
+
+    bindsum s move container to workspace back_and_forth; workspace back_and_forth
+
+    # move focused container to workspace
+    bindsym exclam move container to workspace $ws1
+    bindsym at move container to workspace $ws2
+    bindsym numbersign move container to workspace $ws3
+    bindsym dollar move container to workspace $ws4
+    bindsym percent move container to workspace $ws5
+    bindsym asciicircum move container to workspace $ws6
+    bindsym ampersand move container to workspace $ws7
+    bindsym asterisk move container to workspace $ws8
+    bindsym parenleft move container to workspace $ws9
+    bindsym parenright move container to workspace $ws10
+
+    # move container to outputs
+    bindsym Shift+h move container to output right
+    bindsym Shift+j move container to output left
+    bindsym Shift+k move container to output up
+    bindsym Shift+l move container to output down
+
+    # quit focused window
+    bindsym q kill
+
+    # toggle tiling / floating
+    bindsym Shift+space floating toggle
+
+    # Alert on unrecognized commands and exit to default mode to avoid accidental input
+    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym p exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+}
+
+set $mode_layout Layout split [h]orizontally, [v]ertically, [f]ullscreen, [s]tacking, [w]indow, toggle s[p]lit, [Shift+space] toggle floating/tiling, [space] navigate
+mode "$mode_layout" {
+    bindsym Escape mode "default"
+
+    bindsym Control+semicolon mode "$mode_switch"
+
+    bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
+    bindsym Return exec "$terminal" ; mode "default"
+    # quit focused window
+    bindsym q kill
+    bindsym w mode "$mode_move_workspace"
+    bindsym r mode "$mode_window_resize"
+    # go to open window
+    bindsym o exec $rofi -location 2 -width 100 -show window; mode default
+    bindsym m mode "$mode_move_container"
+
+    # split in horizontal orientation
+    bindsym h split h
+
+    # split in vertical orientation
+    bindsym v split v
+
+    # enter fullscreen mode for the focused container
+    bindsym f fullscreen toggle
+
+    # change container layout (stacked, tabbed, toggle split)
+    bindsym s layout stacking
+    bindsym w layout tabbed
+    bindsym p layout toggle split
+
+    # toggle tiling / floating
+    bindsym Shift+space floating toggle
+
+    # Alert on unrecognized commands and exit to default mode to avoid accidental input
+    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym j exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym k exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym l exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+}
+
+set $mode_window_resize Resize with [hjkl], [space] navigate
+mode "$mode_window_resize" {
+    bindsym Escape mode "default"
+
+    bindsym Control+semicolon mode "$mode_switch"
+
+    bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
+    bindsym Return exec "$terminal" ; mode "default"
+    # quit focused window
+    bindsym q kill
+    bindsym w mode "$mode_move_workspace"
+    # go to open window
+    bindsym o exec $rofi -location 2 -width 100 -show window; mode default
+    bindsym a mode "$mode_layout"
+    bindsym m mode "$mode_move_container"
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
+
+    # Alert on unrecognized commands and exit to default mode to avoid accidental input
+    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym p exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym s exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -187,203 +445,6 @@ mode "$mode_i3_special" {
     bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
 }
 
-set $mode_navigate Navigate [hjkl] or [<arrow>] move focus, [<workspace>] go to workspace, [Shift+space] focus floating/tiling, [p] focus parent, [Shift+p] focus child, [space] move container,  l[a]yout, [s]witch to last workspace, [m]ove container
-mode "$mode_navigate" {
-    bindsym Escape mode "default"
-
-    bindsym Control+semicolon mode "$mode_switch"
-
-    bindsym Return mode "default"
-
-    bindsym space mode "$mode_move_container"
-  
-    # change focus
-    bindsym h focus left
-    bindsym j focus down
-    bindsym k focus up
-    bindsym l focus right
-
-    # alternatively, you can use the cursor keys:
-    bindsym Left focus left
-    bindsym Down focus down
-    bindsym Up focus up
-    bindsym Right focus right
-
-    # go to workspace
-    bindsym exclam workspace $ws1
-    bindsym at workspace $ws2
-    bindsym numbersign workspace $ws3
-    bindsym dollar workspace $ws4
-    bindsym percent workspace $ws5
-    bindsym asciicircum workspace $ws6
-    bindsym ampersand workspace $ws7
-    bindsym asterisk workspace $ws8
-    bindsym parenleft workspace $ws9
-    bindsym parenright workspace $ws10
-
-    # change focus between tiling / floating windows
-    bindsym Shift+space focus mode_toggle
-
-    # focus the parent container
-    bindsym p focus parent
-
-    # focus the child container
-    bindsym Shift+p focus child
-
-    # switch between last used workspaces
-    bindsym s workspace back_and_forth; mode "$mode_navigate"
-
-    # switch to layout mode
-    bindsym a mode "$mode_layout"
-
-    # switch to move mode
-    bindsym m mode "$mode_move_container"
-
-    # Alert on unrecognized commands and exit to default mode to avoid accidental input
-    bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym w exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-}
-
-# [hjkl] keeps focus
-# [Shift+hjkl] loses focus
-set $mode_move_container Move container [hjkl] or [<arrows>], [<workspace>] move to workspace, [Shift+hjkl] to outputs, [q]uit container, [Shift+space] toggle floating/tiling, [space] navigate
-mode "$mode_move_container" {
-    bindsym Escape mode "default"
-
-    bindsym Control+semicolon mode "$mode_switch"
-
-    bindsym Return mode "default"
-
-    bindsym space mode "$mode_navigate"
-
-    # move focused window
-    bindsym h move left
-    bindsym j move down
-    bindsym k move up
-    bindsym l move right
-
-    # alternatively, you can use the cursor keys:
-    bindsym Left move left
-    bindsym Down move down
-    bindsym Up move up
-    bindsym Right move right
-
-    bindsum s move container to workspace back_and_forth; workspace back_and_forth
-
-    # move focused container to workspace
-    bindsym exclam move container to workspace $ws1
-    bindsym at move container to workspace $ws2
-    bindsym numbersign move container to workspace $ws3
-    bindsym dollar move container to workspace $ws4
-    bindsym percent move container to workspace $ws5
-    bindsym asciicircum move container to workspace $ws6
-    bindsym ampersand move container to workspace $ws7
-    bindsym asterisk move container to workspace $ws8
-    bindsym parenleft move container to workspace $ws9
-    bindsym parenright move container to workspace $ws10
-
-    # move container to outputs
-    bindsym Shift+h move container to output right
-    bindsym Shift+j move container to output left
-    bindsym Shift+k move container to output up
-    bindsym Shift+l move container to output down
-
-    # quit focused window
-    bindsym q kill
-
-    # toggle tiling / floating
-    bindsym Shift+space floating toggle
-
-    # Alert on unrecognized commands and exit to default mode to avoid accidental input
-    bindsym w exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym p exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-}
-
-set $mode_layout Layout split [h]orizontally, [v]ertically, [f]ullscreen, [s]tacking, [w]indow, toggle s[p]lit, [Shift+space] toggle floating/tiling, [space] navigate
-mode "$mode_layout" {
-    bindsym Escape mode "default"
-
-    bindsym Control+semicolon mode "$mode_switch"
-
-    bindsym Return mode "default"
-
-    bindsym space mode "$mode_navigate"
-
-    # split in horizontal orientation
-    bindsym h split h
-
-    # split in vertical orientation
-    bindsym v split v
-
-    # enter fullscreen mode for the focused container
-    bindsym f fullscreen toggle
-
-    # change container layout (stacked, tabbed, toggle split)
-    bindsym s layout stacking
-    bindsym w layout tabbed
-    bindsym p layout toggle split
-
-    # toggle tiling / floating
-    bindsym Shift+space floating toggle
-
-    # Alert on unrecognized commands and exit to default mode to avoid accidental input
-    bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym j exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym k exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym l exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-}
-
 set $mode_move_workspace Get workspace from [<workspace>] or move to output [hjkl], [space] navigate
 mode "$mode_move_workspace" {
     bindsym Escape mode "default"
@@ -411,56 +472,6 @@ mode "$mode_move_workspace" {
     bindsym asterisk [workspace="8"] move workspace to output current
     bindsym parenleft [workspace="9"] move workspace to output current
     bindsym parenright [workspace="10"] move workspace to output current
-
-    # Alert on unrecognized commands and exit to default mode to avoid accidental input
-    bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym w exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym p exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym s exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym d exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym m exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-}
-
-set $mode_window_resize Resize with [hjkl], [space] navigate
-mode "$mode_window_resize" {
-    bindsym Escape mode "default"
-
-    bindsym Control+semicolon mode "$mode_switch"
-
-    bindsym Return mode "default"
-
-    bindsym space mode "$mode_navigate"
-
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym h resize shrink width 5 px or 5 ppt
-    bindsym j resize grow height 5 px or 5 ppt
-    bindsym k resize shrink height 5 px or 5 ppt
-    bindsym l resize grow width 5 px or 5 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
