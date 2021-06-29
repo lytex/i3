@@ -89,7 +89,8 @@ exec i3-msg workspace $ws1 # Start at defined workspace instead of at workspace 
 
 bindsym Control+semicolon mode "$mode_switch"
 
-set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrksp [Shift+space] toggle floating/tiling, [i]3 special
+set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrksp
+# [Shift+space] toggle floating/tiling, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
 
@@ -157,6 +158,7 @@ mode "$mode_switch" {
 
 
 set $mode_navigate [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrkspc
+# [Shift+space] toggle floating/tiling, [i]3 special
 mode "$mode_navigate" {
     bindsym Escape mode "default"
 
