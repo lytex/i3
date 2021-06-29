@@ -72,6 +72,7 @@ set $ws8 8
 set $ws9 9
 set $ws10 10
 
+exec i3-msg workspace 1 # Start at defined workspace instead of at workspace 1 (default)
 
 #### Modes ####
 #
@@ -82,17 +83,21 @@ set $ws10 10
 # Some modes are transient modes, meaning once a command is pressed, they return to default mode without having to press Escape
 
 bindsym Control+semicolon mode "$mode_switch"
-set $mode_switch Mode [space] launcher, goto [o]pen window, [hjklpP<arrow><workspace>] navigate, [m]ove container, l[a]yout, move [w]orkspace, [r]esize container, [s]witch to last workspace, [i]3 special
+set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last workspace # , [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon nop
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
-
     bindsym Return exec "$terminal" ; mode "default"
 
-    bindsym o exec $rofi -location 2 -width 100 -show window; mode default
+    bindsym q kill # quit focused window
+    bindsym w mode "$mode_move_workspace"
+    bindsym r mode "$mode_window_resize"
+    bindsym o exec $rofi -location 2 -width 100 -show window; mode default # go to open window
+    bindsym a mode "$mode_layout"
+    bindsym m mode "$mode_move_container"
 
     bindsym h focus left; mode "$mode_navigate"
     bindsym j focus down; mode "$mode_navigate"
@@ -116,10 +121,6 @@ mode "$mode_switch" {
     bindsym parenleft workspace $ws9; mode "$mode_navigate"
     bindsym parenright workspace $ws10; mode "$mode_navigate"
 
-    bindsym m mode "$mode_move_container"
-    bindsym a mode "$mode_layout"
-    bindsym w mode "$mode_move_workspace"
-    bindsym r mode "$mode_window_resize"
     bindsym i mode "$mode_i3_special"
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
