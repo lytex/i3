@@ -308,7 +308,6 @@ mode "$mode_layout" {
     bindsym Return exec "$terminal" ; mode "default"
     # quit focused window
     bindsym q kill
-    bindsym w mode "$mode_move_workspace"
     bindsym r mode "$mode_window_resize"
     # go to open window
     bindsym o exec $rofi -location 2 -width 100 -show window; mode default
