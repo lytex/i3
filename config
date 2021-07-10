@@ -95,6 +95,8 @@ bindsym Mod1+Mod4+9 move container to workspace $ws9
 bindsym Mod1+Mod4+0 move container to workspace $ws0
 
 exec i3-msg workspace $ws1 # Start at defined workspace instead of at workspace 1 (default)
+# Toggle i3 bar
+bindsym Control+Mod1+i bar mode toggle
 
 #### Modes ####
 #
