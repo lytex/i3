@@ -98,6 +98,15 @@ exec i3-msg workspace $ws1 # Start at defined workspace instead of at workspace 
 # Toggle i3 bar
 bindsym Control+Mod1+i bar mode toggle
 
+
+bindsym Control+Mod1+j exec xset dpms force off
+
+# Lock screen
+bindsym Control+Mod1+l exec --no-startup-id i3lock -c 000000 && xset dpms force off
+bindsym Mod4+l exec --no-startup-id i3lock -c 000000 && xset dpms force off
+# Hibernate (really sleep)
+bindsym Control+Mod1+h exec --no-startup-id i3lock -c 000000 && systemctl suspend
+
 #### Modes ####
 #
 # Control+semicolon gets you to "mode switch" mode from anywhere. 
