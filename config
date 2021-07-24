@@ -333,11 +333,11 @@ mode "$mode_layout" {
     bindsym o exec $rofi -location 2 -width 100 -show window; mode default
     bindsym m mode "$mode_move_container"
 
+    # split following vim convention (which is the opposite of i3 convention)
     # split in horizontal orientation
-    bindsym h split h
-
+    bindsym v split h
     # split in vertical orientation
-    bindsym v split v
+    bindsym h split v
 
     # enter fullscreen mode for the focused container
     bindsym f fullscreen toggle
