@@ -125,7 +125,7 @@ bindsym Control+Mod1+h exec --no-startup-id i3lock -c 000000 && systemctl suspen
 
 bindsym Control+semicolon mode "$mode_switch"
 
-set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrksp
+set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrksp
 # [Shift+space] toggle floating/tiling, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
@@ -148,11 +148,6 @@ mode "$mode_switch" {
     bindsym j focus down; mode "$mode_navigate"
     bindsym k focus up; mode "$mode_navigate"
     bindsym l focus right; mode "$mode_navigate"
-    # alternatively, you can use the cursor keys:
-    bindsym Left focus left; mode "$mode_navigate"
-    bindsym Down focus down; mode "$mode_navigate"
-    bindsym Up focus up; mode "$mode_navigate"
-    bindsym Right focus right; mode "$mode_navigate"
     # focus the parent container
     bindsym p focus parent; mode "$mode_navigate"
     # focus the child container
@@ -193,7 +188,7 @@ mode "$mode_switch" {
 }
 
 
-set $mode_navigate [space] app, [Return] terminal, to [o]pen window, [hjklpP←↓↑→[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrkspc
+set $mode_navigate [space] app, [Return] terminal, to [o]pen window, [hjklpP[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrkspc
 # [Shift+space] toggle floating/tiling, [i]3 special
 mode "$mode_navigate" {
     bindsym Escape mode "default"
@@ -216,11 +211,6 @@ mode "$mode_navigate" {
     bindsym j focus down
     bindsym k focus up
     bindsym l focus right
-    # alternatively, you can use the cursor keys:
-    bindsym Left focus left
-    bindsym Down focus down
-    bindsym Up focus up
-    bindsym Right focus right
     # focus the parent container
     bindsym p focus parent
     # focus the child container
@@ -282,12 +272,6 @@ mode "$mode_move_container" {
     bindsym j move down
     bindsym k move up
     bindsym l move right
-
-    # alternatively, you can use the cursor keys:
-    bindsym Left move left
-    bindsym Down move down
-    bindsym Up move up
-    bindsym Right move right
 
     bindsum s move container to workspace back_and_forth; workspace back_and_forth
 
@@ -408,12 +392,6 @@ mode "$mode_window_resize" {
     bindsym j resize grow height 5 px or 5 ppt
     bindsym k resize shrink height 5 px or 5 ppt
     bindsym l resize grow width 5 px or 5 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
