@@ -105,10 +105,10 @@ bindsym Control+Mod1+i bar mode toggle
 bindsym Control+Mod1+j exec xset dpms force off
 
 # Lock screen
-bindsym Control+Mod1+l exec --no-startup-id i3lock -c 000000 && xset dpms force off
-bindsym Mod4+l exec --no-startup-id i3lock -c 000000 && xset dpms force off
+bindsym Control+Mod1+l exec --no-startup-id i3lock -c 553333 && xset dpms force off
+bindsym Mod4+l exec --no-startup-id i3lock -c 553333 && xset dpms force off
 # Hibernate (really sleep)
-bindsym Control+Mod1+h exec --no-startup-id i3lock -c 000000 && systemctl suspend
+bindsym Control+Mod1+h exec --no-startup-id i3lock -c 553333 && systemctl suspend
 
 #### Modes ####
 #
