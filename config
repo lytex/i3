@@ -125,7 +125,7 @@ bindsym Control+Mod1+h exec --no-startup-id i3lock -c 553333 && systemctl suspen
 
 bindsym Control+semicolon mode "$mode_switch"
 
-set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [q]uit, [s]witch last wrksp
+set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [x] scratchpad, [q]uit, [s]witch last wrksp
 # [Shift+space] toggle floating/tiling, [i]3 special
 mode "$mode_switch" {
     bindsym Escape mode "default"
@@ -170,10 +170,8 @@ mode "$mode_switch" {
 
     bindsym i mode "$mode_i3_special"
 
-    # Scratchpad
-
     # Show the first scratchpad window
-    bindsym $mod+minus scratchpad show
+    bindsym x scratchpad show
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -185,7 +183,6 @@ mode "$mode_switch" {
     bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -236,6 +233,9 @@ mode "$mode_navigate" {
     # change focus between tiling / floating windows
     bindsym Shift+space focus mode_toggle
 
+    # Show the first scratchpad window
+    bindsym x scratchpad show
+
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym r exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -247,7 +247,6 @@ mode "$mode_navigate" {
     bindsym f exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym g exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym c exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -357,6 +356,9 @@ mode "$mode_layout" {
 
     # toggle tiling / floating
     bindsym Shift+space floating toggle
+
+    # Show the first scratchpad window
+    bindsym x scratchpad show
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
     bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
