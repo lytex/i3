@@ -95,6 +95,9 @@ bindsym Mod1+Mod4+8 move container to workspace $ws8
 bindsym Mod1+Mod4+9 move container to workspace $ws9
 bindsym Mod1+Mod4+0 move container to workspace $ws0
 
+bindsym Mod4+q kill
+bindsym Mod4+r mode "$mode_window_resize"
+
 assign [class="Evolution"] $ws10
 
 exec i3-msg workspace $ws1 # Start at defined workspace instead of at workspace 1 (default)
