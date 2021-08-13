@@ -21,7 +21,8 @@
 # exec --no-startup-id setxkbmap fr bepo
 
 # Applications
-set $terminal i3-sensible-terminal
+#
+set $terminal i3-sensible-terminal -e "nvim" -c ':Neomux'
 # set $editor /usr/bin/emacsclient -c
 # set $web /home/guillaume/.local/bin/firefox
 # set $email /home/guillaume/.local/bin/astroid
@@ -136,7 +137,7 @@ mode "$mode_switch" {
     bindsym Control+semicolon nop
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
-    bindsym Return exec "$terminal" ; mode "default"
+    bindsym Return exec $terminal ; mode "default"
     # quit focused window
     bindsym q kill
     bindsym w mode "$mode_move_workspace"
@@ -201,7 +202,7 @@ mode "$mode_navigate" {
     bindsym Control+semicolon mode "$mode_switch"
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
-    bindsym Return exec "$terminal" ; mode "default"
+    bindsym Return exec $terminal ; mode "default"
    # quit focused window
     bindsym q kill
     bindsym w mode "$mode_move_workspace"
