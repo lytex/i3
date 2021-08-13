@@ -22,7 +22,8 @@
 
 # Applications
 #
-set $terminal i3-sensible-terminal -e "nvim" -c ':Neomux'
+set $terminal i3-sensible-terminal -e "nvim"  --cmd "let g:neomux_win_num_status = '«Terminal[%{WindowNumber()}]»'" -c "Neomux"
+# -c "set neomux_win_num_status '∥ W:[%{WindowNumber()}] ∥'"
 # set $editor /usr/bin/emacsclient -c
 # set $web /home/guillaume/.local/bin/firefox
 # set $email /home/guillaume/.local/bin/astroid
@@ -98,6 +99,8 @@ bindsym Mod1+Mod4+0 move container to workspace $ws0
 
 bindsym Mod4+q kill
 bindsym Mod4+r mode "$mode_window_resize"
+# send C-\ C-n (exit terminal mode) using C-'
+bindsym --release Control+apostrophe exec xdotool key --window $(xdotool getwindowfocus) 'control+backslash' key 'control+n'
 
 assign [class="Evolution"] $ws10
 
