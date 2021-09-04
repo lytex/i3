@@ -438,7 +438,7 @@ mode "$mode_window_resize" {
     bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
 }
 
-set $mode_i3_special reload [c]onfiguration, [r]estart, [k]ill nagbar, e[x]it
+set $mode_i3_special reload [c]onfiguration, [r]estart, [k]ill nagbar, [q]uit & start kde, [i]
 mode "$mode_i3_special" {
     # Transient mode, exit when running a command to default mode
     bindsym Escape mode "default"
@@ -457,17 +457,18 @@ mode "$mode_i3_special" {
     # close open nagbar
     bindsym k exec "killall i3-nagbar"; mode "default"
     
-    # exit i3 (logs you out of your X session)
-    bindsym x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+    # quit & restart kde
+    bindsym q exec "kquitapp5 plasmashell && kstart5 plasmashell"
+
+    # fix to redraw terminal
+    bindsym i floating toggle
 
     # Alert on unrecognized commands and exit to default mode to avoid accidental input
-    bindsym q exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym w exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym e exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym t exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym y exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym u exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
-    bindsym i exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym o exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym p exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym a exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
@@ -479,6 +480,7 @@ mode "$mode_i3_special" {
     bindsym j exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym l exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym z exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
+    bindsym x exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym v exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym b exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
     bindsym n exec "i3-nagbar -m 'Unrecognized command, going back to default mode'"; mode "default"
