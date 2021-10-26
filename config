@@ -151,6 +151,7 @@ bindsym Control+Mod1+h exec --no-startup-id i3lock -c 553333 && systemctl suspen
 # Some modes are transient modes, meaning once a command is pressed, they return to default mode without having to press Escape
 
 bindsym Control+semicolon mode "$mode_switch"
+bindsym Mod4+z mode "$mode_switch"
 
 set $mode_switch [space] app, [Return] terminal, to [o]pen window, [hjklpP[0-9]] navigate, [m]ove, l[a]yout, [r]esize, [x] scratchpad, [q]uit, [s]witch last wrksp, [,] rename
 # [Shift+space] toggle floating/tiling, [i]3 special
@@ -225,6 +226,7 @@ mode "$mode_navigate" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon mode "$mode_switch"
+    bindsym Mod4+z mode "$mode_switch"
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
@@ -291,6 +293,7 @@ mode "$mode_move_container" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon mode "$mode_switch"
+    bindsym Mod4+z mode "$mode_switch"
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
@@ -363,6 +366,7 @@ mode "$mode_layout" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon mode "$mode_switch"
+    bindsym Mod4+z mode "$mode_switch"
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
@@ -416,6 +420,7 @@ mode "$mode_window_resize" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon mode "$mode_switch"
+    bindsym Mod4+z mode "$mode_switch"
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
@@ -462,6 +467,7 @@ mode "$mode_i3_special" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon mode "$mode_switch"
+    bindsym Mod4+z mode "$mode_switch"
 
     bindsym Return mode "default"
 
@@ -510,6 +516,7 @@ mode "$mode_move_workspace" {
     bindsym Escape mode "default"
 
     bindsym Control+semicolon mode "$mode_switch"
+    bindsym Mod4+z mode "$mode_switch"
 
     bindsym Return mode "default"
 
