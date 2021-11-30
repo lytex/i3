@@ -23,6 +23,7 @@
 # Applications
 #
 set $terminal i3-sensible-terminal -e "nvim"  --cmd "let g:neomux_win_num_status = '«Terminal[%{WindowNumber()}]»'" -c "Neomux"
+set $code_terminal export SHELL=zsh && ~/.local/kitty.app/bin/kitty lvim ~/.config/lvim/config.lua +:w +:term
 # -c "set neomux_win_num_status '∥ W:[%{WindowNumber()}] ∥'"
 # set $editor /usr/bin/emacsclient -c
 # set $web /home/guillaume/.local/bin/firefox
@@ -162,6 +163,7 @@ mode "$mode_switch" {
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
+    bindsym Control+Return exec $code_terminal ; mode "default"
     # quit focused window
     bindsym q kill
     bindsym w mode "$mode_move_workspace"
@@ -230,6 +232,7 @@ mode "$mode_navigate" {
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
+    bindsym Control+Return exec $code_terminal ; mode "default"
    # quit focused window
     bindsym q kill
     bindsym w mode "$mode_move_workspace"
@@ -297,6 +300,7 @@ mode "$mode_move_container" {
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
+    bindsym Control+Return exec $code_terminal ; mode "default"
     # quit focused window
     bindsym q kill
     bindsym w mode "$mode_move_workspace"
@@ -370,6 +374,7 @@ mode "$mode_layout" {
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
+    bindsym Control+Return exec $code_terminal ; mode "default"
     # quit focused window
     bindsym q kill
     bindsym r mode "$mode_window_resize"
@@ -424,6 +429,7 @@ mode "$mode_window_resize" {
 
     bindsym space exec $rofi -location 2 -width 100 -show drun; mode "default"
     bindsym Return exec $terminal ; mode "default"
+    bindsym Control+Return exec $code_terminal ; mode "default"
     # quit focused window
     bindsym q kill
     bindsym w mode "$mode_move_workspace"
